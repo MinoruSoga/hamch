@@ -1,0 +1,44 @@
+<div class="card my-4">
+    <div class="card-body">
+        <div class="content">
+            <div>
+                <div class="center-object">
+                    <a class="navbar-brand" href="/"><img width="150px"
+                            src="//5ch.net/images/5ch_mascot_normal.png"></a>
+                </div>
+                掲示板『ハムちゃんねる』へようこそ！
+                <br>
+                自分で作ったクエストを投稿してみよう！
+            </div>
+            <div class="d-grid gap-2">
+                <a href="{% url 'hamch:create' %}" class="w-100">
+                    <button class="btn btn-primary w-100" type="button">
+                        新規投稿
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card my-4">
+    <div class="card-body">
+        <span class="title-widget">試したい数</span>
+        <hr class="widget-hr">
+        <div class="content">
+            <ul class="circle-style">
+                {% for try_post in try_posts %}
+                <li><a href="{% url 'hamch:detail' try_post.pk%}">{{ try_post.subject }} </a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <span class="title-widget">試した数</span>
+        <hr class="widget-hr">
+        <div class="content">
+            <ul class="circle-style">
+                {% for try_done_post in try_done_posts %}
+                <li><a href="{% url 'hamch:detail' try_done_post.pk%}">{{ try_done_post.subject }} </a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

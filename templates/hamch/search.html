@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="main-content-box">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="post-item-box">
+                    <h3>{{ message }}</h3>
+                    <div class="thread-main-box">
+                        <ul class="threadlist" id="thread_list_posts">
+                            {% for post in posts %}
+                            <li class="thread">
+                                <div class="thread_link">
+                                    <div class="thread_box thread_box-left text-center">
+                                    </div>
+                                    <div class="thread_box thread_box-right">
+                                        <div class="thread_title">
+                                            <a href="{% url 'hamch:detail' post.pk %}" rel="nofollow noopener">{{ post.subject}}</a>
+                                        </div>
+                                        <div class="thread-content ">
+                                            <p title="クリックして展開する" class="full-content">
+                                                {{ post.content }}
+                                            </p>
+                                        </div>
+                                        <div class="thread_detail text-end">
+                                            <a href="{% url 'hamch:search' %}?keyword={{ post.category.name }}">
+                                                カテゴリー:{{ post.category.name }}
+                                            </a>
+                                        </div>
+                                        <div class="poster_info">
+                                            <span class="name">{{ post.name }}</span> <span
+                                                class="date">{{ post.created_at }}</span>
+                                        </div>
+                                        <div class="thread_detail text-end">
+                                            <span class="thread_detail_child" title="Comment"><a
+                                                    href="{% url 'hamch:detail' post.pk %}">
+                                                    <span
+                                                        class="fa fa-comment"></span> 
+                                                        <span
+                                                        class="thread_detail_child_value">{{ post.comment_count }}</span></a></span>
+                                            <span class="thread_detail_child" title="try">
+                                                <i class="fa fa-heart"></i>
+                                                {{ post.try_count }}
+                                                試したい
+                                            </span>
+                                            <span class="thread_detail_child" title="try">
+                                                <i class="fas fa-star"></i>
+                                                {{ post.try_done_count }}
+                                                試した
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                {% include 'sidenav.html' %}
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

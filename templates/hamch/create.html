@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="main-content-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="post-item-box">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">名前</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">クエストタイトル</label>
+                                <input type="text" class="form-control" id="subject" name="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="content" class="form-label">クエスト内容</label>
+                                <textarea class="form-control" id="content" rows="10" name="content"
+                                    required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">クエストカテゴリー</label>
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg"
+                                    name="category" id="category" required>
+                                    {% for category in categories %}
+                                    <option value="{{ category.pk }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <p class="text-end">カテゴリーがない場合は<a href="{% url 'hamch:category-create'%}">こちら</a>から作成</p>
+                            <button type="submit" class="btn btn-primary w-100">投稿する</button>
+                        </form>
+                    </form>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                {% include 'sidenav.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

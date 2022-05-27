@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="main-content-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="post-item-box">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <form>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">カテゴリー名</label>
+                                <input type="text" class="form-control" id="category" name="category" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">作成する</button>
+                        </form>
+                    </form>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                {% include 'sidenav.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
